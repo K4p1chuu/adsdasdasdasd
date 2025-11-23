@@ -1,0 +1,62 @@
+[
+  {
+    "id": "f0ed22d1-5ec6-41ae-aa9a-0b42460c574e",
+    "type": "Pojazd",
+    "details": {
+      "marka": "Audi",
+      "model": "Rs7",
+      "typPojazdu": "Sedan",
+      "trim": "",
+      "rejestracja": "VI PKH1",
+      "stanRejestracji": "Missisouri",
+      "kolor": "Czerwony",
+      "cechy": "Bi kolorowe felgi",
+      "kierowca": "",
+      "wlasciciel": "",
+      "powod": "wymuszenie pierwszenstwa i spowodowanie wypadku podczas zmiany pasa ruchu"
+    },
+    "author": "Andrzej Paleta",
+    "authorBadge": "104",
+    "createdAt": "2025-10-07T19:42:38.311Z"
+  },
+  {
+    "id": "5cff45fb-6994-4757-90bc-e151c379c708",
+    "type": "Pojazd",
+    "details": {
+      "marka": "ferdinand",
+      "model": "rapido",
+      "typPojazdu": "sedan?",
+      "trim": "turbo",
+      "rejestracja": "940918",
+      "stanRejestracji": "california",
+      "kolor": "ciemny czerwony",
+      "cechy": "szare felgi",
+      "kierowca": "K4p1chuu (<@1265678800923004989>)",
+      "wlasciciel": "K4p1chuu (<@1265678800923004989>)",
+      "powod": "Ucieczka przed WSP/OCSO 25 mies. / $9500  Potrącenie przechodnia 0 mies. / $5250  Wtargnięcie na teren prywatny 10 mies. / $6750  Wykup miesięcy (1 mies. = $1000, max 30)"
+    },
+    "author": "Emily Carter",
+    "authorBadge": "186",
+    "createdAt": "2025-10-04T20:54:58.755Z"
+  },
+  {
+    "id": "24c77abc-fb9f-4fd5-825e-5233154dde77",
+    "type": "Pojazd",
+    "details": {
+      "marka": "Stuttgart",
+      "model": "Vaihingen Coupe",
+      "typPojazdu": "Suv",
+      "trim": "",
+      "rejestracja": "YOS-125",
+      "stanRejestracji": "Texas",
+      "kolor": "Bialy",
+      "cechy": "Srebrne Felgi",
+      "kierowca": "-",
+      "wlasciciel": "640927558577291303 547830318271561739",
+      "powod": "wymuszenie pierwszenstwa spowodowanie wypadku i ucieczka z miejsca zdarzenia"
+    },
+    "author": "Andrzej Paleta",
+    "authorBadge": "104",
+    "createdAt": "2025-10-04T18:32:26.374Z"
+  }
+]

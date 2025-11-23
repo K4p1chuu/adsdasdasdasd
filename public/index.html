@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WSP & OCSO & UERD & DOT - Logowanie</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Import FontAwesome dla ikon w formularzach -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Import czcionki Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        #background-overlay {
+            position: fixed;
+            z-index: -10;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('GVRLRPPL GIF.gif'); 
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.4);
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            -webkit-text-fill-color: #ffffff !important;
+            -webkit-box-shadow: 0 0 0px 1000px rgba(0,0,0,0) inset !important;
+            caret-color: #ffffff !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        input:-moz-autofill {
+            -moz-text-fill-color: #ffffff !important;
+            box-shadow: 0 0 0px 1000px rgba(0,0,0,0) inset !important;
+        }
+        .hidden { display: none; }
+
+        /* --- SCROLLING FOOTER (Marquee Text) --- */
+        .integrated-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px; /* Wysokość paska */
+            background-color: rgba(255, 255, 255, 0.95); /* Białe tło */
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            overflow: hidden; /* Ukrywa tekst wyjeżdżający poza ekran */
+            z-index: 50;
+            border-top: 2px solid #e5e7eb; /* Delikatna ramka */
+        }
+
+        .scrolling-text {
+            position: absolute;
+            white-space: nowrap;
+            will-change: transform;
+            /* Animacja przejazdu: 20s duration, liniowa, nieskończona */
+            animation: marquee-text 20s linear infinite;
+            font-family: 'Poppins', sans-serif;
+            color: #111827;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        @keyframes marquee-text {
+            0% { transform: translateX(100vw); }   /* Start za prawą krawędzią ekranu */
+            100% { transform: translateX(-100%); } /* Koniec za lewą krawędzią (przesunięcie o własną szerokość) */
+        }
+    </style>
+</head>
+<body class="text-white font-sans">
+    
+    <div id="background-overlay"></div>
+
+    <!-- Padding dolny pb-20 aby treść nie wchodziła pod stopkę -->
+    <div class="flex items-center justify-center min-h-screen p-4 pb-24"> 
+        <div id="content-container" class="w-full max-w-7xl">
+
+            <!-- Ekran 1: Wybór systemu -->
+            <div id="selection-screen" class="w-full">
+                <h1 class="text-3xl font-bold text-center text-white mb-10 drop-shadow-lg font-[Poppins]">Wybierz system logowania</h1>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Karta MDT -->
+                    <div class="border border-gray-500/50 rounded-lg shadow-xl p-6 text-center transition-all duration-300 hover:shadow-2xl hover:scale-105 flex flex-col bg-gray-900/60 backdrop-blur-sm group">
+                        <img src="ocsowsp.png" alt="Logo MDT" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/100x100/1f2937/ffffff?text=MDT';" 
+                             class="w-20 h-20 mx-auto mb-4 object-contain group-hover:scale-110 transition-transform">
+                        <h2 class="text-xl font-semibold mb-2 text-blue-400">MDT</h2>
+                        <p class="text-gray-300 mb-6 flex-grow text-xs">Mobile Data Terminal (WSP & OCSO)</p>
+                        <button id="show-mdt-login" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300 shadow-lg">
+                            Logowanie
+                        </button>
+                    </div>
+
+                    <!-- Karta UERD -->
+                    <div class="border border-red-500/50 rounded-lg shadow-xl p-6 text-center transition-all duration-300 hover:shadow-2xl hover:scale-105 flex flex-col bg-gray-900/60 backdrop-blur-sm group">
+                        <img src="UERDLOGO.png" alt="Logo UERD" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/100x100/7f1d1d/ffffff?text=UERD';" 
+                             class="w-20 h-20 mx-auto mb-4 object-contain group-hover:scale-110 transition-transform">
+                        <h2 class="text-xl font-semibold mb-2 text-red-500">UERD</h2>
+                        <p class="text-gray-300 mb-6 flex-grow text-xs">Urząd Ewidencji Ratownictwa (EMS)</p>
+                        <button id="show-uerd-login" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300 shadow-lg">
+                            Logowanie
+                        </button>
+                    </div>
+
+                    <!-- Karta CEPIK -->
+                    <div class="border border-gray-400/50 rounded-lg shadow-xl p-6 text-center transition-all duration-300 hover:shadow-2xl hover:scale-105 flex flex-col bg-gray-900/60 backdrop-blur-sm group">
+                        <svg class="w-20 h-20 mx-auto mb-4 text-gray-300 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <h2 class="text-xl font-semibold mb-2 text-gray-300">CEPIK</h2>
+                        <p class="text-gray-300 mb-6 flex-grow text-xs">Centralna Ewidencja Pojazdów</p>
+                        <button id="show-cepik-login" class="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300 shadow-lg">
+                            Logowanie
+                        </button>
+                    </div>
+
+                    <!-- Karta WisDOT -->
+                    <div class="border border-yellow-500/50 rounded-lg shadow-xl p-6 text-center transition-all duration-300 hover:shadow-2xl hover:scale-105 flex flex-col bg-gray-900/60 backdrop-blur-sm group">
+                        <img src="DOTLOGO.png" alt="Logo WisDOT" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/100x100/ca8a04/ffffff?text=DOT';" 
+                             class="w-20 h-20 mx-auto mb-4 object-contain group-hover:scale-110 transition-transform">
+                        <h2 class="text-xl font-semibold mb-2 text-yellow-500">WisDOT</h2>
+                        <p class="text-gray-300 mb-6 flex-grow text-xs">Department of Transportation</p>
+                        <button id="show-dot-login" class="w-full bg-yellow-600 hover:bg-yellow-700 text-black font-bold py-2 px-4 rounded-lg transition-colors duration-300 shadow-lg">
+                            Logowanie
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Ekrany Logowania (Formularze) -->
+            <div id="login-forms-wrapper" class="w-full max-w-md mx-auto relative hidden">
+                <!-- Formularz MDT -->
+                <div id="mdt-login-screen" class="border border-blue-500/30 rounded-lg shadow-xl p-8 bg-gray-900/80 backdrop-blur-md hidden login-form-animate">
+                    <button class="back-to-selection absolute top-4 left-4 text-gray-400 hover:text-white transition-colors">
+                        <i class="fas fa-arrow-left text-xl"></i>
+                    </button>
+                    <img src="ocsowsp.png" class="w-20 h-20 mx-auto mb-4 object-contain">
+                    <h2 class="text-2xl font-bold text-center text-white mb-2">Logowanie do MDT</h2>
+                    <form id="mdt-login-form" class="space-y-4 mt-6">
+                        <div class="relative">
+                            <i class="fas fa-user absolute left-3 top-3 text-gray-500"></i>
+                            <input type="email" name="username" required placeholder="Email" class="w-full pl-10 px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-blue-500 outline-none transition-colors">
+                        </div>
+                        <div class="relative">
+                            <i class="fas fa-lock absolute left-3 top-3 text-gray-500"></i>
+                            <input type="password" name="password" required placeholder="Hasło" class="w-full pl-10 px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-blue-500 outline-none transition-colors">
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">Zaloguj się</button>
+                    </form>
+                    <p id="mdt-error-message" class="text-red-500 text-center mt-4 text-sm hidden"></p>
+                </div>
+
+                <!-- Formularz UERD -->
+                <div id="uerd-login-screen" class="border border-red-500/30 rounded-lg shadow-xl p-8 bg-gray-900/80 backdrop-blur-md hidden login-form-animate">
+                    <button class="back-to-selection absolute top-4 left-4 text-gray-400 hover:text-white transition-colors">
+                        <i class="fas fa-arrow-left text-xl"></i>
+                    </button>
+                    <img src="UERDLOGO.png" class="w-20 h-20 mx-auto mb-4 object-contain">
+                    <h2 class="text-2xl font-bold text-center text-red-500 mb-2">Logowanie do UERD</h2>
+                    <form id="uerd-login-form" class="space-y-4 mt-6">
+                        <div class="relative">
+                            <i class="fas fa-user absolute left-3 top-3 text-gray-500"></i>
+                            <input type="email" name="username" required placeholder="Email" class="w-full pl-10 px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-red-500 outline-none transition-colors">
+                        </div>
+                        <div class="relative">
+                            <i class="fas fa-lock absolute left-3 top-3 text-gray-500"></i>
+                            <input type="password" name="password" required placeholder="Hasło" class="w-full pl-10 px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-red-500 outline-none transition-colors">
+                        </div>
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">Zaloguj się</button>
+                    </form>
+                    <p id="uerd-error-message" class="text-red-500 text-center mt-4 text-sm hidden"></p>
+                </div>
+
+                <!-- Formularz CEPIK -->
+                <div id="cepik-login-screen" class="border border-gray-500/30 rounded-lg shadow-xl p-8 bg-gray-900/80 backdrop-blur-md hidden login-form-animate">
+                    <button class="back-to-selection absolute top-4 left-4 text-gray-400 hover:text-white transition-colors">
+                        <i class="fas fa-arrow-left text-xl"></i>
+                    </button>
+                    <i class="fas fa-car text-6xl text-gray-400 block text-center mb-4"></i>
+                    <h2 class="text-2xl font-bold text-center text-gray-300 mb-2">Logowanie do CEPIK</h2>
+                    <form id="cepik-login-form" class="space-y-4 mt-6">
+                        <div class="relative">
+                            <i class="fas fa-user absolute left-3 top-3 text-gray-500"></i>
+                            <input type="email" name="username" required placeholder="Email" class="w-full pl-10 px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-gray-500 outline-none transition-colors">
+                        </div>
+                        <div class="relative">
+                            <i class="fas fa-lock absolute left-3 top-3 text-gray-500"></i>
+                            <input type="password" name="password" required placeholder="Hasło" class="w-full pl-10 px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-gray-500 outline-none transition-colors">
+                        </div>
+                        <button type="submit" class="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">Zaloguj się</button>
+                    </form>
+                    <p id="cepik-error-message" class="text-red-500 text-center mt-4 text-sm hidden"></p>
+                </div>
+
+                <!-- Formularz DOT -->
+                <div id="dot-login-screen" class="border border-yellow-500/30 rounded-lg shadow-xl p-8 bg-gray-900/80 backdrop-blur-md hidden login-form-animate">
+                    <button class="back-to-selection absolute top-4 left-4 text-gray-400 hover:text-white transition-colors">
+                        <i class="fas fa-arrow-left text-xl"></i>
+                    </button>
+                    <img src="DOTLOGO.png" class="w-20 h-20 mx-auto mb-4 object-contain">
+                    <h2 class="text-2xl font-bold text-center text-yellow-500 mb-2">Logowanie do WisDOT</h2>
+                    <form id="dot-login-form" class="space-y-4 mt-6">
+                        <div class="relative">
+                            <i class="fas fa-user absolute left-3 top-3 text-gray-500"></i>
+                            <input type="email" name="username" required placeholder="Email" class="w-full pl-10 px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-yellow-500 outline-none transition-colors">
+                        </div>
+                        <div class="relative">
+                            <i class="fas fa-lock absolute left-3 top-3 text-gray-500"></i>
+                            <input type="password" name="password" required placeholder="Hasło" class="w-full pl-10 px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-yellow-500 outline-none transition-colors">
+                        </div>
+                        <button type="submit" class="w-full bg-yellow-600 hover:bg-yellow-700 text-black font-bold py-2 px-4 rounded-lg transition-colors">Zaloguj się</button>
+                    </form>
+                    <p id="dot-error-message" class="text-red-500 text-center mt-4 text-sm hidden"></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ZINTEGROWANA STOPKA: SCROLLING TEXT -->
+    <div class="integrated-footer">
+        <div class="scrolling-text">
+            Made By K4p1chuu <span class="mx-2 text-blue-600">&bull;</span> Wszelkie prawa zastrzeżone
+        </div>
+    </div>
+
+    <script>
+        const selectionScreen = document.getElementById('selection-screen');
+        const loginWrapper = document.getElementById('login-forms-wrapper');
+        
+        const forms = {
+            police: document.getElementById('mdt-login-screen'),
+            uerd: document.getElementById('uerd-login-screen'),
+            cepik: document.getElementById('cepik-login-screen'),
+            dot: document.getElementById('dot-login-screen')
+        };
+
+        function showScreen(screenName) {
+            if (screenName === 'select') {
+                loginWrapper.classList.add('hidden');
+                selectionScreen.classList.remove('hidden');
+                Object.values(forms).forEach(el => el.classList.add('hidden'));
+            } else {
+                selectionScreen.classList.add('hidden');
+                loginWrapper.classList.remove('hidden');
+                // Pokaż konkretny formularz
+                Object.values(forms).forEach(el => el.classList.add('hidden'));
+                
+                let targetForm;
+                if (screenName === 'mdt') targetForm = forms.police;
+                else if (screenName === 'uerd') targetForm = forms.uerd;
+                else if (screenName === 'cepik') targetForm = forms.cepik;
+                else if (screenName === 'dot') targetForm = forms.dot;
+                
+                if (targetForm) targetForm.classList.remove('hidden');
+            }
+        }
+
+        document.getElementById('show-mdt-login').onclick = () => showScreen('mdt');
+        document.getElementById('show-uerd-login').onclick = () => showScreen('uerd');
+        document.getElementById('show-cepik-login').onclick = () => showScreen('cepik');
+        document.getElementById('show-dot-login').onclick = () => showScreen('dot');
+        
+        document.querySelectorAll('.back-to-selection').forEach(btn => btn.onclick = () => showScreen('select'));
+
+        async function handleLogin(event, system, errorElementId) {
+            event.preventDefault();
+            const form = event.target;
+            const errorEl = document.getElementById(errorElementId);
+            const button = form.querySelector('button[type="submit"]');
+            const originalText = button.innerText;
+            
+            const username = form.username.value;
+            const password = form.password.value;
+
+            errorEl.classList.add('hidden');
+            button.disabled = true;
+            button.innerText = 'Logowanie...';
+            button.classList.add('opacity-70', 'cursor-not-allowed');
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password, system: system })
+                });
+
+                const result = await response.json();
+
+                if (result.success && result.token) {
+                    localStorage.setItem('token', result.token);
+                    localStorage.setItem('system', system);
+                    
+                    setTimeout(() => {
+                        window.location.href = result.redirect || 'dashboard.html';
+                    }, 500);
+                } else {
+                    throw new Error(result.message || 'Błąd logowania.');
+                }
+            } catch (error) {
+                errorEl.innerText = error.message;
+                errorEl.classList.remove('hidden');
+                button.disabled = false;
+                button.innerText = originalText;
+                button.classList.remove('opacity-70', 'cursor-not-allowed');
+            }
+        }
+
+        document.getElementById('mdt-login-form').onsubmit = (e) => handleLogin(e, 'police', 'mdt-error-message');
+        document.getElementById('uerd-login-form').onsubmit = (e) => handleLogin(e, 'uerd', 'uerd-error-message');
+        document.getElementById('cepik-login-form').onsubmit = (e) => handleLogin(e, 'cepik', 'cepik-error-message');
+        document.getElementById('dot-login-form').onsubmit = (e) => handleLogin(e, 'dot', 'dot-error-message');
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "admin@uerd.gov": {
+    "id": "uerd_admin",
+    "email": "admin@uerd.gov",
+    "username": "Szef UERD",
+    "password": "admin",
+    "badge": "01",
+    "rank": "Ranga 12 (Zarząd)",
+    "isAdmin": true,
+    "token": "68b89c637c177b5fa0b228572f970998653deed8eb48fd28f923c4f5a8b11dba"
+  }
+}

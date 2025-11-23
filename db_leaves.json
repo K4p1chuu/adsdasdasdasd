@@ -1,0 +1,80 @@
+[
+  {
+    "id": "f929594a-88b2-448b-9117-0430e0f3a26f",
+    "officerName": "Igor Blue",
+    "officerDiscordId": "1364910519194095646",
+    "officerRank": "Deputy",
+    "officerBadge": "5006",
+    "department": "OCSO",
+    "reason": "Szkoła",
+    "dateRange": "Od 14 pazdziernika do 16",
+    "canExtend": "NIE",
+    "signature": "I. Blue",
+    "submittedAt": "2025-10-13T19:12:43.974Z"
+  },
+  {
+    "id": "cb6ad1cb-fd2d-4e8a-9403-62ab9a6b5e68",
+    "officerName": "Andrzej Paleta",
+    "officerDiscordId": "1353615366110187541",
+    "officerRank": "Lieutenant Colonel",
+    "officerBadge": "104",
+    "department": "WSP",
+    "reason": "Nauka",
+    "dateRange": "od pn do pt tydzien w tydzien do odwolania",
+    "canExtend": "TAK",
+    "signature": "A. Paleta",
+    "submittedAt": "2025-10-06T18:47:34.533Z"
+  },
+  {
+    "id": "a94eb62b-c28c-4cff-9b67-d80d90f7d4ea",
+    "officerName": "Nathaniel Kvaran",
+    "officerDiscordId": "1241841494646591629",
+    "officerRank": "Trooper",
+    "officerBadge": "225",
+    "department": "WSP",
+    "reason": "Wyjazd za granice",
+    "dateRange": "05.10.2025 - 17.05.2025",
+    "canExtend": "TAK",
+    "signature": "N. Kvaran",
+    "submittedAt": "2025-10-05T19:27:51.105Z"
+  },
+  {
+    "id": "ddbb5a98-2b6e-40e9-9537-b268c645c5e2",
+    "officerName": "Lucas Mil",
+    "officerDiscordId": "703354785599848568",
+    "officerRank": "Probationary Deputy",
+    "officerBadge": "6004",
+    "department": "OCSO",
+    "reason": "wyjazd do Hiszpani ",
+    "dateRange": "08.10.2025-15.10.2025",
+    "canExtend": "NIE",
+    "signature": "L. Mil",
+    "submittedAt": "2025-10-04T08:22:31.872Z"
+  },
+  {
+    "id": "f24d3a51-c986-4de6-9c36-f22d4ccc8ec2",
+    "officerName": "Sergio Mazzoleni",
+    "officerDiscordId": "781075335088570408",
+    "officerRank": "Trooper First Class",
+    "officerBadge": "205",
+    "department": "WSP",
+    "reason": "brak czasu ze wzgledu na szkole",
+    "dateRange": "25.09  do 25.10",
+    "canExtend": "TAK",
+    "signature": "S. Mazzoleni",
+    "submittedAt": "2025-09-25T16:28:22.431Z"
+  },
+  {
+    "id": "c9062d89-a8bd-479b-8791-48b7e36a8464",
+    "officerName": "Mirek Paleta",
+    "officerDiscordId": "1145968397306310727",
+    "officerRank": "Trooper",
+    "officerBadge": "226",
+    "department": "WSP",
+    "reason": "Szkoła",
+    "dateRange": "25.09.2025 - 30.10.2025",
+    "canExtend": "TAK",
+    "signature": "M. Paleta",
+    "submittedAt": "2025-09-25T14:39:47.680Z"
+  }
+]
